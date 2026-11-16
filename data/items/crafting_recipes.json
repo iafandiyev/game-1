@@ -1,0 +1,329 @@
+{
+  "recipes": [
+    {
+      "id": "bandage",
+      "name": "Bandage",
+      "description": "Create a basic bandage from cloth.",
+      "category": "medicine",
+      "result": {
+        "item_id": "bandage",
+        "count": 2
+      },
+      "ingredients": [
+        { "item_id": "cloth", "count": 2 }
+      ],
+      "requirements": {
+        "level": 0,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 2.0,
+      "experience": 5
+    },
+    {
+      "id": "medkit",
+      "name": "Medical Kit",
+      "description": "Assemble a comprehensive medical kit.",
+      "category": "medicine",
+      "result": {
+        "item_id": "medkit",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "bandage", "count": 3 },
+        { "item_id": "chemicals", "count": 2 },
+        { "item_id": "duct_tape", "count": 1 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": "medical_station"
+      },
+      "craft_time": 10.0,
+      "experience": 25
+    },
+    {
+      "id": "molotov",
+      "name": "Molotov Cocktail",
+      "description": "Create an improvised incendiary weapon.",
+      "category": "weapons",
+      "result": {
+        "item_id": "molotov",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "dirty_water", "count": 1 },
+        { "item_id": "cloth", "count": 1 },
+        { "item_id": "chemicals", "count": 1 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 5.0,
+      "experience": 15
+    },
+    {
+      "id": "basic_trap",
+      "name": "Basic Trap",
+      "description": "Craft a simple tripwire trap.",
+      "category": "tools",
+      "result": {
+        "item_id": "trap",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 3 },
+        { "item_id": "wood", "count": 2 },
+        { "item_id": "rope", "count": 1 }
+      ],
+      "requirements": {
+        "level": 0,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 8.0,
+      "experience": 10
+    },
+    {
+      "id": "wooden_barricade",
+      "name": "Wooden Barricade",
+      "description": "Build a wooden barricade for defense.",
+      "category": "construction",
+      "result": {
+        "item_id": "barricade_kit",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "wood", "count": 10 },
+        { "item_id": "scrap_metal", "count": 5 },
+        { "item_id": "duct_tape", "count": 2 }
+      ],
+      "requirements": {
+        "level": 0,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 15.0,
+      "experience": 20
+    },
+    {
+      "id": "battery_pack",
+      "name": "Flashlight Battery Pack",
+      "description": "Combine batteries into a long-lasting pack.",
+      "category": "tools",
+      "result": {
+        "item_id": "battery",
+        "count": 4
+      },
+      "ingredients": [
+        { "item_id": "battery", "count": 8 },
+        { "item_id": "duct_tape", "count": 1 },
+        { "item_id": "electronics", "count": 1 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 5.0,
+      "experience": 15
+    },
+    {
+      "id": "pistol_ammo",
+      "name": "9mm Ammunition",
+      "description": "Hand-load 9mm pistol cartridges.",
+      "category": "ammunition",
+      "result": {
+        "item_id": "pistol_ammo",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 2 },
+        { "item_id": "chemicals", "count": 1 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 3.0,
+      "experience": 10
+    },
+    {
+      "id": "shotgun_ammo",
+      "name": "12 Gauge Shells",
+      "description": "Hand-load 12 gauge shotgun shells.",
+      "category": "ammunition",
+      "result": {
+        "item_id": "shotgun_ammo",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 3 },
+        { "item_id": "chemicals", "count": 2 }
+      ],
+      "requirements": {
+        "level": 2,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 5.0,
+      "experience": 15
+    },
+    {
+      "id": "rifle_ammo",
+      "name": "5.56mm Ammunition",
+      "description": "Hand-load 5.56mm rifle cartridges.",
+      "category": "ammunition",
+      "result": {
+        "item_id": "rifle_ammo",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 3 },
+        { "item_id": "chemicals", "count": 2 },
+        { "item_id": "electronics", "count": 1 }
+      ],
+      "requirements": {
+        "level": 3,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 8.0,
+      "experience": 25
+    },
+    {
+      "id": "repair_kit",
+      "name": "Repair Kit",
+      "description": "Assemble a kit for repairing equipment.",
+      "category": "tools",
+      "result": {
+        "item_id": "repair_kit",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 5 },
+        { "item_id": "duct_tape", "count": 3 },
+        { "item_id": "electronics", "count": 2 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 10.0,
+      "experience": 20
+    },
+    {
+      "id": "lockpick",
+      "name": "Lockpick Set",
+      "description": "Craft a set of lockpicks from scrap metal.",
+      "category": "tools",
+      "result": {
+        "item_id": "lockpick",
+        "count": 3
+      },
+      "ingredients": [
+        { "item_id": "scrap_metal", "count": 5 },
+        { "item_id": "electronics", "count": 1 }
+      ],
+      "requirements": {
+        "level": 1,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 5.0,
+      "experience": 15
+    },
+    {
+      "id": "improved_backpack",
+      "name": "Improved Backpack",
+      "description": "Sew a larger backpack from cloth and leather.",
+      "category": "equipment",
+      "result": {
+        "item_id": "backpack",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "cloth", "count": 15 },
+        { "item_id": "rope", "count": 3 },
+        { "item_id": "duct_tape", "count": 2 }
+      ],
+      "requirements": {
+        "level": 2,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 20.0,
+      "experience": 30
+    },
+    {
+      "id": "noise_distraction",
+      "name": "Noise Distraction Device",
+      "description": "Build a timed noise maker to distract zombies.",
+      "category": "tools",
+      "result": {
+        "item_id": "noise_maker",
+        "count": 2
+      },
+      "ingredients": [
+        { "item_id": "electronics", "count": 2 },
+        { "item_id": "scrap_metal", "count": 3 },
+        { "item_id": "battery", "count": 1 }
+      ],
+      "requirements": {
+        "level": 2,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 10.0,
+      "experience": 20
+    },
+    {
+      "id": "advanced_barricade",
+      "name": "Advanced Barricade",
+      "description": "Construct a reinforced metal-plated barricade.",
+      "category": "construction",
+      "result": {
+        "item_id": "advanced_barricade",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "barricade_kit", "count": 1 },
+        { "item_id": "scrap_metal", "count": 20 },
+        { "item_id": "electronics", "count": 2 },
+        { "item_id": "duct_tape", "count": 5 }
+      ],
+      "requirements": {
+        "level": 3,
+        "tools": [],
+        "workstation": "workshop"
+      },
+      "craft_time": 30.0,
+      "experience": 50
+    },
+    {
+      "id": "cooked_meat",
+      "name": "Cooked Meat",
+      "description": "Cook raw meat to make it safe to eat.",
+      "category": "food",
+      "result": {
+        "item_id": "cooked_meat",
+        "count": 1
+      },
+      "ingredients": [
+        { "item_id": "raw_meat", "count": 1 },
+        { "item_id": "wood", "count": 2 }
+      ],
+      "requirements": {
+        "level": 0,
+        "tools": [],
+        "workstation": null
+      },
+      "craft_time": 30.0,
+      "experience": 5
+    }
+  ]
+}

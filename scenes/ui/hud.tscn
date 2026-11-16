@@ -1,0 +1,204 @@
+[gd_scene load_steps=2 format=3 uid="//uid://hud"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer" layout_mode=3]
+layer = 10
+script = ExtResource("1")
+
+[node name="LeftPanel" type="HBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 9
+offset_left = 20
+offset_top = 20
+
+[node name="HealthContainer" type="VBoxContainer" parent="LeftPanel"]
+alignment = 0
+
+[node name="HealthLabel" type="Label" parent="HealthContainer"]
+text = "HEALTH"
+theme_overrides = {
+"font_size": 12,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HealthContainer"]
+min_value = 0
+max_value = 100
+value = 100
+size = Vector2(200, 20)
+theme_overrides = {
+"fill_color": Color(0.8, 0.1, 0.1, 1),
+"bg_color": Color(0.1, 0.02, 0.02, 0.8)
+}
+
+[node name="StaminaContainer" type="VBoxContainer" parent="LeftPanel"]
+alignment = 0
+
+[node name="StaminaLabel" type="Label" parent="StaminaContainer"]
+text = "STAMINA"
+theme_overrides = {
+"font_size": 12,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="StaminaBar" type="ProgressBar" parent="StaminaContainer"]
+min_value = 0
+max_value = 100
+value = 100
+size = Vector2(200, 20)
+theme_overrides = {
+"fill_color": Color(0.2, 0.7, 0.3, 1),
+"bg_color": Color(0.02, 0.1, 0.02, 0.8)
+}
+
+[node name="SurvivalContainer" type="VBoxContainer" parent="LeftPanel"]
+alignment = 0
+
+[node name="HungerContainer" type="HBoxContainer" parent="SurvivalContainer"]
+
+[node name="HungerIcon" type="TextureRect" parent="HungerContainer"]
+custom_minimum_size = Vector2(20, 20)
+
+[node name="HungerBar" type="ProgressBar" parent="HungerContainer"]
+min_value = 0
+max_value = 100
+value = 100
+size = Vector2(150, 16)
+theme_overrides = {
+"fill_color": Color(0.9, 0.6, 0.1, 1),
+"bg_color": Color(0.1, 0.08, 0.01, 0.8)
+}
+
+[node name="ThirstContainer" type="HBoxContainer" parent="SurvivalContainer"]
+
+[node name="ThirstIcon" type="TextureRect" parent="ThirstContainer"]
+custom_minimum_size = Vector2(20, 20)
+
+[node name="ThirstBar" type="ProgressBar" parent="ThirstContainer"]
+min_value = 0
+max_value = 100
+value = 100
+size = Vector2(150, 16)
+theme_overrides = {
+"fill_color": Color(0.1, 0.5, 0.9, 1),
+"bg_color": Color(0.01, 0.05, 0.1, 0.8)
+}
+
+[node name="InfectionContainer" type="HBoxContainer" parent="SurvivalContainer"]
+
+[node name="InfectionIcon" type="TextureRect" parent="InfectionContainer"]
+custom_minimum_size = Vector2(20, 20)
+
+[node name="InfectionBar" type="ProgressBar" parent="InfectionContainer"]
+min_value = 0
+max_value = 100
+value = 0
+size = Vector2(150, 16)
+theme_overrides = {
+"fill_color": Color(0.6, 0.1, 0.8, 1),
+"bg_color": Color(0.08, 0.01, 0.1, 0.8)
+}
+
+[node name="RightPanel" type="HBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 12
+offset_right = -20
+offset_top = 20
+alignment = 2
+
+[node name="WeaponContainer" type="VBoxContainer" parent="RightPanel"]
+alignment = 2
+
+[node name="WeaponName" type="Label" parent="WeaponContainer"]
+text = "BASEBALL BAT"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 16,
+"font_color": Color(0.9, 0.9, 0.9, 1)
+}
+
+[node name="AmmoContainer" type="HBoxContainer" parent="WeaponContainer"]
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="AmmoContainer"]
+text = "--"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 24,
+"font_color": Color(1, 1, 1, 1)
+}
+
+[node name="AmmoSlash" type="Label" parent="AmmoContainer"]
+text = " / "
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(0.6, 0.6, 0.6, 1)
+}
+
+[node name="ReserveAmmo" type="Label" parent="AmmoContainer"]
+text = "--"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="WeaponIcons" type="HBoxContainer" parent="RightPanel"]
+alignment = 2
+
+[node name="WeaponSlot1" type="TextureRect" parent="WeaponIcons"]
+custom_minimum_size = Vector2(48, 48)
+
+[node name="WeaponSlot2" type="TextureRect" parent="WeaponIcons"]
+custom_minimum_size = Vector2(48, 48)
+
+[node name="WeaponSlot3" type="TextureRect" parent="WeaponIcons"]
+custom_minimum_size = Vector2(48, 48)
+
+[node name="WeaponSlot4" type="TextureRect" parent="WeaponIcons"]
+custom_minimum_size = Vector2(48, 48)
+
+[node name="ObjectiveContainer" type="VBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 10
+offset_top = 100
+offset_left = 20
+
+[node name="ObjectiveLabel" type="Label" parent="ObjectiveContainer"]
+text = "OBJECTIVE"
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(1, 0.8, 0.2, 1)
+}
+
+[node name="ObjectiveText" type="Label" parent="ObjectiveContainer"]
+text = "Find a safe place"
+autowrap_mode = 2
+wrap_width = 300
+theme_overrides = {
+"font_size": 16,
+"font_color": Color(0.9, 0.9, 0.9, 1)
+}
+
+[node name="InteractionPrompt" type="Label" parent="."]
+layout_mode = 3
+anchors_preset = 7
+offset_bottom = -100
+text = "[E] Interact"
+visible = false
+horizontal_alignment = 3
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(1, 1, 1, 1),
+"outline_size": 2,
+"outline_color": Color(0, 0, 0, 1)
+}
+
+[node name="Notifications" type="VBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 6
+offset_top = 100
+offset_right = -20
+alignment = 2

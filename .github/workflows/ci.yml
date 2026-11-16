@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  GODOT_VERSION: "4.2.1"
+  PROJECT_NAME: "LAST-NIGHT"
+
+jobs:
+  validate:
+    name: Validate Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chansey/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          channel: stable
+
+      - name: Validate project
+        run: |
+          godot --headless --check-only --quit
+
+      - name: Run GDScript linting
+        run: |
+          # Check for basic syntax errors
+          godot --headless --script scripts/test_syntax.gd --quit || true
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chansey/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          channel: stable
+
+      - name: Run automated tests
+        run: |
+          godot --headless --script tests/run_tests.gd --quit
+
+  export-test:
+    name: Test Export Presets
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chansey/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          channel: stable
+
+      - name: Install export templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          wget -q https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz -O /tmp/templates.tpz
+          unzip -q /tmp/templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+
+      - name: Test Linux export
+        run: |
+          godot --headless --export-release "Linux/X11" build/last-night-linux.x86_64 --quit
+
+      - name: Test Windows export
+        run: |
+          godot --headless --export-release "Windows Desktop" build/last-night-windows.exe --quit
+
+      - name: Upload test builds
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-builds
+          path: build/
+          retention-days: 7

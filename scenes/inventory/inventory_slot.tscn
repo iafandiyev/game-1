@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid://uid://inventoryslot]
+
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="1"]
+
+[node name="InventorySlot" type="Panel" layout_mode=3]
+script = ExtResource("1")
+custom_minimum_size = Vector2(80, 80)
+mouse_filter = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+offset_top = 5
+offset_bottom = -35
+stretch_mode = 2
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 3
+anchors_preset = 12
+offset_right = -5
+offset_bottom = -5
+horizontal_alignment = 2
+vertical_alignment = 2
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(1, 1, 1, 1),
+"outline_size": 2,
+"outline_color": Color(0, 0, 0, 1)
+}
+
+[node name="RarityBorder" type="StyleBoxFlat" parent="."]
+bg_color = Color(0, 0, 0, 0)
+border_width = 2
+corner_radius = 4

@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="//uid://craftingmenu"]
+
+[ext_resource type="Script" path="res://scripts/ui/crafting_menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/crafting_recipe_entry.tscn" id="2"]
+
+[node name="CraftingMenu" type="Control" layout_mode=3]
+script = ExtResource("1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+
+[node name="CategoryTabs" type="TabContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+
+[node name="AllRecipesTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "All"
+
+[node name="AllRecipesList" type="VBoxContainer" parent="AllRecipesTab"]
+
+[node name="MedicineTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Medicine"
+
+[node name="MedicineList" type="VBoxContainer" parent="MedicineTab"]
+
+[node name="WeaponsTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Weapons"
+
+[node name="WeaponsList" type="VBoxContainer" parent="WeaponsTab"]
+
+[node name="ToolsTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Tools"
+
+[node name="ToolsList" type="VBoxContainer" parent="ToolsTab"]
+
+[node name="ConstructionTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Construction"
+
+[node name="ConstructionList" type="VBoxContainer" parent="ConstructionTab"]
+
+[node name="AmmunitionTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Ammunition"
+
+[node name="AmmunitionList" type="VBoxContainer" parent="AmmunitionTab"]
+
+[node name="FoodTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Food"
+
+[node name="FoodList" type="VBoxContainer" parent="FoodTab"]
+
+[node name="RecipeDetails" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+visible = false
+
+[node name="DetailsVBox" type="VBoxContainer" parent="RecipeDetails"]
+
+[node name="RecipeName" type="Label" parent="DetailsVBox"]
+text = "Recipe Name"
+theme_overrides = {
+"font_size": 22,
+"font_color": Color(1, 1, 1, 1)
+}
+
+[node name="RecipeDescription" type="Label" parent="DetailsVBox"]
+text = "Recipe description..."
+theme_overrides = {
+"font_size": 16,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="IngredientsContainer" type="VBoxContainer" parent="DetailsVBox"]
+
+[node name="IngredientsTitle" type="Label" parent="IngredientsContainer"]
+text = "Ingredients:"
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(1, 0.8, 0.2, 1)
+}
+
+[node name="IngredientsList" type="VBoxContainer" parent="IngredientsContainer"]
+
+[node name="RequirementsContainer" type="VBoxContainer" parent="DetailsVBox"]
+
+[node name="RequirementsTitle" type="Label" parent="RequirementsContainer"]
+text = "Requirements:"
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(1, 0.8, 0.2, 1)
+}
+
+[node name="RequirementsList" type="VBoxContainer" parent="RequirementsContainer"]
+
+[node name="CraftButton" type="Button" parent="DetailsVBox"]
+text = "CRAFT"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(200, 50)
+disabled = true

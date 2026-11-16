@@ -1,0 +1,553 @@
+{
+  "items": [
+    {
+      "id": "bandage",
+      "name": "Bandage",
+      "description": "A clean cloth bandage for treating minor wounds. Restores 20 health.",
+      "category": "medicine",
+      "icon": "res://assets/ui/icons/bandage.png",
+      "stack_size": 10,
+      "weight": 0.1,
+      "value": 15,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "heal",
+        "amount": 20
+      },
+      "craftable": true,
+      "crafting_recipe": "bandage"
+    },
+    {
+      "id": "medkit",
+      "name": "Medical Kit",
+      "description": "A comprehensive medical kit with antibiotics, painkillers, and surgical supplies. Restores 60 health and cures 30 infection.",
+      "category": "medicine",
+      "icon": "res://assets/ui/icons/medkit.png",
+      "stack_size": 5,
+      "weight": 0.5,
+      "value": 100,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "heal",
+        "amount": 60
+      },
+      "secondary_effect": {
+        "type": "cure_infection",
+        "amount": 30
+      },
+      "craftable": true,
+      "crafting_recipe": "medkit"
+    },
+    {
+      "id": "antibiotics",
+      "name": "Antibiotics",
+      "description": "Strong antibiotics for treating infection. Reduces infection by 40.",
+      "category": "medicine",
+      "icon": "res://assets/ui/icons/antibiotics.png",
+      "stack_size": 10,
+      "weight": 0.1,
+      "value": 50,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "cure_infection",
+        "amount": 40
+      },
+      "craftable": false
+    },
+    {
+      "id": "painkillers",
+      "name": "Painkillers",
+      "description": "Temporarily reduces pain and increases stamina regeneration. Restores 15 health and 30 stamina.",
+      "category": "medicine",
+      "icon": "res://assets/ui/icons/painkillers.png",
+      "stack_size": 10,
+      "weight": 0.1,
+      "value": 30,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "heal",
+        "amount": 15
+      },
+      "secondary_effect": {
+        "type": "restore_stamina",
+        "amount": 30
+      },
+      "craftable": false
+    },
+    {
+      "id": "water_bottle",
+      "name": "Water Bottle",
+      "description": "A bottle of clean drinking water. Restores 40 thirst.",
+      "category": "water",
+      "icon": "res://assets/ui/icons/water_bottle.png",
+      "stack_size": 10,
+      "weight": 0.5,
+      "value": 20,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "drink",
+        "amount": 40
+      },
+      "craftable": false
+    },
+    {
+      "id": "dirty_water",
+      "name": "Dirty Water",
+      "description": "Contaminated water from questionable sources. Restores 20 thirst but may cause illness.",
+      "category": "water",
+      "icon": "res://assets/ui/icons/dirty_water.png",
+      "stack_size": 10,
+      "weight": 0.5,
+      "value": 5,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "drink",
+        "amount": 20
+      },
+      "negative_effect": {
+        "type": "add_infection",
+        "amount": 5
+      },
+      "craftable": false
+    },
+    {
+      "id": "canned_food",
+      "name": "Canned Food",
+      "description": "Preserved food in a tin can. Restores 35 hunger.",
+      "category": "food",
+      "icon": "res://assets/ui/icons/canned_food.png",
+      "stack_size": 10,
+      "weight": 0.4,
+      "value": 25,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "eat",
+        "amount": 35
+      },
+      "craftable": false
+    },
+    {
+      "id": "energy_bar",
+      "name": "Energy Bar",
+      "description": "High-calorie emergency ration. Restores 25 hunger and 15 stamina.",
+      "category": "food",
+      "icon": "res://assets/ui/icons/energy_bar.png",
+      "stack_size": 10,
+      "weight": 0.1,
+      "value": 30,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "eat",
+        "amount": 25
+      },
+      "secondary_effect": {
+        "type": "restore_stamina",
+        "amount": 15
+      },
+      "craftable": false
+    },
+    {
+      "id": "raw_meat",
+      "name": "Raw Meat",
+      "description": "Uncooked meat from hunted animals. Restores 20 hunger but carries infection risk.",
+      "category": "food",
+      "icon": "res://assets/ui/icons/raw_meat.png",
+      "stack_size": 5,
+      "weight": 0.5,
+      "value": 10,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "eat",
+        "amount": 20
+      },
+      "negative_effect": {
+        "type": "add_infection",
+        "amount": 10
+      },
+      "craftable": false
+    },
+    {
+      "id": "cooked_meat",
+      "name": "Cooked Meat",
+      "description": "Properly cooked meat. Restores 50 hunger safely.",
+      "category": "food",
+      "icon": "res://assets/ui/icons/cooked_meat.png",
+      "stack_size": 5,
+      "weight": 0.3,
+      "value": 40,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "eat",
+        "amount": 50
+      },
+      "craftable": true,
+      "crafting_recipe": "cooked_meat"
+    },
+    {
+      "id": "pistol_ammo",
+      "name": "9mm Ammunition",
+      "description": "Standard 9x19mm pistol rounds. Box of 15 rounds.",
+      "category": "ammunition",
+      "icon": "res://assets/ui/icons/pistol_ammo.png",
+      "stack_size": 60,
+      "weight": 0.02,
+      "value": 10,
+      "rarity": "common",
+      "usable": false,
+      "ammo_type": "9mm",
+      "count": 15,
+      "craftable": true,
+      "crafting_recipe": "pistol_ammo"
+    },
+    {
+      "id": "shotgun_ammo",
+      "name": "12 Gauge Shells",
+      "description": "12 gauge shotgun shells. Box of 8 shells.",
+      "category": "ammunition",
+      "icon": "res://assets/ui/icons/shotgun_ammo.png",
+      "stack_size": 32,
+      "weight": 0.05,
+      "value": 20,
+      "rarity": "uncommon",
+      "usable": false,
+      "ammo_type": "12gauge",
+      "count": 8,
+      "craftable": true,
+      "crafting_recipe": "shotgun_ammo"
+    },
+    {
+      "id": "rifle_ammo",
+      "name": "5.56mm Ammunition",
+      "description": "5.56x45mm rifle rounds. Box of 20 rounds.",
+      "category": "ammunition",
+      "icon": "res://assets/ui/icons/rifle_ammo.png",
+      "stack_size": 60,
+      "weight": 0.02,
+      "value": 30,
+      "rarity": "rare",
+      "usable": false,
+      "ammo_type": "556",
+      "count": 20,
+      "craftable": true,
+      "crafting_recipe": "rifle_ammo"
+    },
+    {
+      "id": "scrap_metal",
+      "name": "Scrap Metal",
+      "description": "Pieces of metal salvaged from ruins. Used for crafting weapons and tools.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/scrap_metal.png",
+      "stack_size": 50,
+      "weight": 0.5,
+      "value": 10,
+      "rarity": "common",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "wood",
+      "name": "Wood",
+      "description": "Salvaged lumber and wooden planks. Essential for construction and crafting.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/wood.png",
+      "stack_size": 50,
+      "weight": 0.3,
+      "value": 8,
+      "rarity": "common",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "cloth",
+      "name": "Cloth",
+      "description": "Fabric scraps from clothing and upholstery. Used for bandages and crafting.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/cloth.png",
+      "stack_size": 50,
+      "weight": 0.1,
+      "value": 5,
+      "rarity": "common",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "chemicals",
+      "name": "Chemicals",
+      "description": "Various chemical compounds. Used for medicine and ammunition crafting.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/chemicals.png",
+      "stack_size": 20,
+      "weight": 0.2,
+      "value": 30,
+      "rarity": "uncommon",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "description": "Salvaged electronic components. Used for advanced crafting.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/electronics.png",
+      "stack_size": 20,
+      "weight": 0.2,
+      "value": 40,
+      "rarity": "rare",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "duct_tape",
+      "name": "Duct Tape",
+      "description": "Strong adhesive tape. Essential for repairs and improvised crafting.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/duct_tape.png",
+      "stack_size": 20,
+      "weight": 0.2,
+      "value": 25,
+      "rarity": "common",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "rope",
+      "name": "Rope",
+      "description": "Strong nylon rope. Used for climbing, traps, and construction.",
+      "category": "materials",
+      "icon": "res://assets/ui/icons/rope.png",
+      "stack_size": 10,
+      "weight": 0.5,
+      "value": 30,
+      "rarity": "uncommon",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "battery",
+      "name": "Battery",
+      "description": "Standard AA batteries. Powers flashlights and electronic devices.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/battery.png",
+      "stack_size": 20,
+      "weight": 0.1,
+      "value": 15,
+      "rarity": "common",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "flashlight",
+      "name": "Flashlight",
+      "description": "A reliable LED flashlight. Essential for night exploration. Consumes batteries.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/flashlight.png",
+      "stack_size": 1,
+      "weight": 0.3,
+      "value": 50,
+      "rarity": "common",
+      "usable": false,
+      "equippable": true,
+      "slot": "tool",
+      "craftable": false
+    },
+    {
+      "id": "lockpick",
+      "name": "Lockpick Set",
+      "description": "Tools for picking locks. Opens locked doors and containers.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/lockpick.png",
+      "stack_size": 5,
+      "weight": 0.1,
+      "value": 60,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "unlock"
+      },
+      "craftable": true,
+      "crafting_recipe": "lockpick"
+    },
+    {
+      "id": "repair_kit",
+      "name": "Repair Kit",
+      "description": "Tools and materials for repairing weapons and equipment.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/repair_kit.png",
+      "stack_size": 5,
+      "weight": 0.5,
+      "value": 80,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "repair"
+      },
+      "craftable": true,
+      "crafting_recipe": "repair_kit"
+    },
+    {
+      "id": "molotov",
+      "name": "Molotov Cocktail",
+      "description": "Improvised incendiary weapon. Creates a pool of fire on impact.",
+      "category": "weapons",
+      "icon": "res://assets/ui/icons/molotov.png",
+      "stack_size": 5,
+      "weight": 0.5,
+      "value": 40,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "throw_molotov"
+      },
+      "craftable": true,
+      "crafting_recipe": "molotov"
+    },
+    {
+      "id": "trap",
+      "name": "Basic Trap",
+      "description": "A simple tripwire trap. Damages and slows enemies that trigger it.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/trap.png",
+      "stack_size": 5,
+      "weight": 0.5,
+      "value": 30,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "place_trap"
+      },
+      "craftable": true,
+      "crafting_recipe": "basic_trap"
+    },
+    {
+      "id": "noise_maker",
+      "name": "Noise Maker",
+      "description": "A device that creates a loud noise to distract zombies.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/noise_maker.png",
+      "stack_size": 5,
+      "weight": 0.2,
+      "value": 25,
+      "rarity": "common",
+      "usable": true,
+      "use_effect": {
+        "type": "distract"
+      },
+      "craftable": true,
+      "crafting_recipe": "noise_distraction"
+    },
+    {
+      "id": "backpack",
+      "name": "Improved Backpack",
+      "description": "Increases inventory capacity by 10 slots.",
+      "category": "equipment",
+      "icon": "res://assets/ui/icons/backpack.png",
+      "stack_size": 1,
+      "weight": 1.0,
+      "value": 200,
+      "rarity": "rare",
+      "usable": true,
+      "use_effect": {
+        "type": "increase_capacity",
+        "amount": 10
+      },
+      "craftable": true,
+      "crafting_recipe": "improved_backpack"
+    },
+    {
+      "id": "barricade_kit",
+      "name": "Barricade Kit",
+      "description": "Materials for reinforcing doors and windows. Increases safehouse defense.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/barricade_kit.png",
+      "stack_size": 3,
+      "weight": 2.0,
+      "value": 100,
+      "rarity": "uncommon",
+      "usable": true,
+      "use_effect": {
+        "type": "build_barricade"
+      },
+      "craftable": true,
+      "crafting_recipe": "wooden_barricade"
+    },
+    {
+      "id": "advanced_barricade",
+      "name": "Advanced Barricade",
+      "description": "Reinforced barricade with metal plating. Provides superior protection.",
+      "category": "tools",
+      "icon": "res://assets/ui/icons/advanced_barricade.png",
+      "stack_size": 2,
+      "weight": 5.0,
+      "value": 300,
+      "rarity": "rare",
+      "usable": true,
+      "use_effect": {
+        "type": "build_advanced_barricade"
+      },
+      "craftable": true,
+      "crafting_recipe": "advanced_barricade"
+    },
+    {
+      "id": "research_notes_1",
+      "name": "Research Notes: Patient Zero",
+      "description": "Documents describing the first recorded infection case.",
+      "category": "quest",
+      "icon": "res://assets/ui/icons/document.png",
+      "stack_size": 1,
+      "weight": 0.1,
+      "value": 0,
+      "rarity": "unique",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "research_notes_2",
+      "name": "Research Notes: Virus Analysis",
+      "description": "Scientific analysis of the viral structure and transmission.",
+      "category": "quest",
+      "icon": "res://assets/ui/icons/document.png",
+      "stack_size": 1,
+      "weight": 0.1,
+      "value": 0,
+      "rarity": "unique",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "radio_log_1",
+      "name": "Radio Log: Military Broadcast",
+      "description": "Recorded military broadcast about the quarantine zone.",
+      "category": "quest",
+      "icon": "res://assets/ui/icons/radio.png",
+      "stack_size": 1,
+      "weight": 0.1,
+      "value": 0,
+      "rarity": "unique",
+      "usable": false,
+      "craftable": false
+    },
+    {
+      "id": "survivor_note_1",
+      "name": "Survivor's Journal",
+      "description": "Personal journal of a survivor documenting their last days.",
+      "category": "quest",
+      "icon": "res://assets/ui/icons/journal.png",
+      "stack_size": 1,
+      "weight": 0.1,
+      "value": 0,
+      "rarity": "unique",
+      "usable": false,
+      "craftable": false
+    }
+  ]
+}

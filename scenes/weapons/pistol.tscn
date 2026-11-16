@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="//uid://pistol"]
+
+[ext_resource type="Script" path="res://scripts/weapons/pistol.gd" id="1"]
+
+[node name="Pistol" type="Node2D" layout_mode=3]
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+offset = Vector2(-10, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = RectangleShape2D {
+x: 30,
+y: 10
+}

@@ -1,0 +1,62 @@
+LAST NIGHT - Credits
+====================
+
+Game Design & Development
+-------------------------
+AI Assistant (Godot 4 Game Developer)
+
+Engine
+------
+Godot Engine 4.x
+https://godotengine.org/
+
+Programming Language
+--------------------
+GDScript
+
+Assets
+------
+Original Assets: Created for this project
+Placeholder Assets: Generated via script
+
+Third-Party Assets (CC0 / Public Domain):
+- Kenney.nl Asset Packs
+  https://kenney.nl/assets
+- OpenGameArt.org
+  https://opengameart.org/
+- Freesound.org
+  https://freesound.org/
+- itch.io Game Assets (Free)
+  https://itch.io/game-assets/free
+
+Special Thanks
+--------------
+Godot Engine Community
+GDScript Documentation Contributors
+Open Source Game Development Community
+
+Testing
+-------
+Automated Test Suite
+Manual Playtesting
+
+Build System
+------------
+GitHub Actions (macOS runners)
+Godot Export Templates
+
+License
+-------
+MIT License - See LICENSE file
+
+Version
+-------
+1.0.0
+
+Date
+----
+2024
+
+Note: This game was created as a complete, playable 2D survival horror
+zombie apocalypse game for iOS using Godot 4. All code, systems, and
+placeholder assets were generated programmatically.

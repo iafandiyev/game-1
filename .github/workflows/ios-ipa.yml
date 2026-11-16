@@ -1,0 +1,236 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: 'Build mode'
+        required: true
+        default: 'unsigned'
+        type: choice
+        options:
+          - unsigned
+          - signed
+
+env:
+  GODOT_VERSION: "4.2.1"
+  PROJECT_NAME: "LAST-NIGHT"
+  EXPORT_NAME: "iOS"
+  BUILD_DIR: "build/ios"
+
+jobs:
+  build-unsigned:
+    name: Build Unsigned iOS Project
+    runs-on: macos-latest
+    if: github.event.inputs.build_mode != 'signed' || github.event_name != 'workflow_dispatch'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: chansey/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          channel: stable
+
+      - name: Install iOS export templates
+        run: |
+          mkdir -p ~/Library/Application\ Support/Godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          wget -q https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz -O /tmp/templates.tpz
+          unzip -q /tmp/templates.tpz -d ~/Library/Application\ Support/Godot/export_templates/${{ env.GODOT_VERSION }}.stable
+
+      - name: Validate project
+        run: |
+          godot --headless --check-only --quit
+
+      - name: Export iOS Xcode project
+        run: |
+          mkdir -p ${{ env.BUILD_DIR }}
+          godot --headless --export-release "${{ env.EXPORT_NAME }}" "${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcodeproj" --quit
+
+      - name: Verify Xcode project
+        run: |
+          ls -la ${{ env.BUILD_DIR }}/
+          test -d "${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcodeproj"
+
+      - name: Upload unsigned Xcode project
+        uses: actions/upload-artifact@v4
+        with:
+          name: LAST-NIGHT-iOS-Unsigned
+          path: ${{ env.BUILD_DIR }}/
+          retention-days: 30
+
+  build-signed:
+    name: Build Signed IPA
+    runs-on: macos-latest
+    if: github.event.inputs.build_mode == 'signed' && github.event_name == 'workflow_dispatch' || github.event_name == 'push' && github.ref_type == 'tag'
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify signing secrets
+        run: |
+          if [ -z "${{ secrets.IOS_CERTIFICATE_BASE64 }}" ]; then
+            echo "::error::IOS_CERTIFICATE_BASE64 secret not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" ]; then
+            echo "::error::IOS_CERTIFICATE_PASSWORD secret not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" ]; then
+            echo "::error::IOS_PROVISIONING_PROFILE_BASE64 secret not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.IOS_TEAM_ID }}" ]; then
+            echo "::error::IOS_TEAM_ID secret not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.IOS_BUNDLE_ID }}" ]; then
+            echo "::error::IOS_BUNDLE_ID secret not set"
+            exit 1
+          fi
+
+      - name: Setup Godot
+        uses: chansey/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          channel: stable
+
+      - name: Install iOS export templates
+        run: |
+          mkdir -p ~/Library/Application\ Support/Godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          wget -q https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz -O /tmp/templates.tpz
+          unzip -q /tmp/templates.tpz -d ~/Library/Application\ Support/Godot/export_templates/${{ env.GODOT_VERSION }}.stable
+
+      - name: Validate project
+        run: |
+          godot --headless --check-only --quit
+
+      - name: Import signing certificate
+        run: |
+          # Create temporary keychain
+          security create-keychain -p "temp" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "temp" build.keychain
+          
+          # Import certificate
+          echo "${{ secrets.IOS_CERTIFICATE_BASE64 }}" | base64 --decode > certificate.p12
+          security import certificate.p12 -k build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
+          
+          # Import provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > profile.mobileprovision
+          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          
+          # Cleanup
+          rm certificate.p12 profile.mobileprovision
+
+      - name: Configure export preset
+        run: |
+          # Update export_presets.cfg with signing info
+          cat > export_presets.cfg << 'EOF'
+          [preset.0]
+          name="${{ env.EXPORT_NAME }}"
+          platform="iOS"
+          runnable=true
+          bundle_identifier="${{ secrets.IOS_BUNDLE_ID }}"
+          team_id="${{ secrets.IOS_TEAM_ID }}"
+          codesign_identity="Apple Development"
+          provisioning_profile="${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}"
+          target_sdk="iphoneos"
+          arch="arm64"
+          EOF
+
+      - name: Export iOS Xcode project
+        run: |
+          mkdir -p ${{ env.BUILD_DIR }}
+          godot --headless --export-release "${{ env.EXPORT_NAME }}" "${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcodeproj" --quit
+
+      - name: Build and Archive IPA
+        run: |
+          cd ${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcodeproj
+          
+          # Build archive
+          xcodebuild -project ${{ env.PROJECT_NAME }}.xcodeproj \
+            -scheme ${{ env.PROJECT_NAME }} \
+            -configuration Release \
+            -archivePath ${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcarchive \
+            -destination "generic/platform=iOS" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Development" \
+            PROVISIONING_PROFILE="${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" \
+            DEVELOPMENT_TEAM="${{ secrets.IOS_TEAM_ID }}" \
+            clean archive
+          
+          # Export IPA
+          cat > ExportOptions.plist << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <key>development</key>
+            <key>teamID</key>
+            <string>${{ secrets.IOS_TEAM_ID }}</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>signingCertificate</key>
+            <string>Apple Development</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>${{ secrets.IOS_BUNDLE_ID }}</key>
+              <string>${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
+          
+          xcodebuild -exportArchive \
+            -archivePath ${{ env.BUILD_DIR }}/${{ env.PROJECT_NAME }}.xcarchive \
+            -exportPath ${{ env.BUILD_DIR }}/ipa \
+            -exportOptionsPlist ExportOptions.plist
+
+      - name: Upload signed IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: LAST-NIGHT-iOS-IPA
+          path: ${{ env.BUILD_DIR }}/ipa/${{ env.PROJECT_NAME }}.ipa
+          retention-days: 90
+
+      - name: Cleanup keychain
+        if: always()
+        run: |
+          security delete-keychain build.keychain || true
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [build-unsigned, build-signed]
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    steps:
+      - name: Download unsigned build
+        uses: actions/download-artifact@v4
+        with:
+          name: LAST-NIGHT-iOS-Unsigned
+          path: artifacts/unsigned
+
+      - name: Download signed IPA
+        uses: actions/download-artifact@v4
+        with:
+          name: LAST-NIGHT-iOS-IPA
+          path: artifacts/signed
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/unsigned/*
+            artifacts/signed/*.ipa
+          generate_release_notes: true

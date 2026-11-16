@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="//uid://mainmenu"]
+
+[ext_resource type="Script" path="res://scripts/autoload/ui_manager.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/main/main_menu.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_menu.tscn" id="3"]
+
+[node name="MainMenu" type="Control" layout_mode=3]
+script = ExtResource("2")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+color = Color(0.05, 0.05, 0.05, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+stretch_mode = 2
+texture = ExtResource("3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 15
+alignment = 3
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+text = "LAST NIGHT"
+horizontal_alignment = 3
+vertical_alignment = 3
+theme_overrides = {
+"font_size": 72,
+"font_color": Color(0.8, 0.1, 0.1, 1)
+}
+
+[node name="Subtitle" type="Label" parent="VBoxContainer"]
+text = "Survive the Darkness"
+horizontal_alignment = 3
+theme_overrides = {
+"font_size": 24,
+"font_color": Color(0.6, 0.6, 0.6, 1)
+}
+
+[node name="Spacer1" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="MenuButtons" type="VBoxContainer" parent="VBoxContainer"]
+alignment = 3
+
+[node name="NewGameButton" type="Button" parent="MenuButtons"]
+text = "NEW GAME"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+
+[node name="ContinueButton" type="Button" parent="MenuButtons"]
+text = "CONTINUE"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+disabled = true
+
+[node name="LoadGameButton" type="Button" parent="MenuButtons"]
+text = "LOAD GAME"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+text = "SETTINGS"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+
+[node name="CreditsButton" type="Button" parent="MenuButtons"]
+text = "CREDITS"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+
+[node name="QuitButton" type="Button" parent="MenuButtons"]
+text = "QUIT"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(300, 50)
+
+[node name="VersionLabel" type="Label" parent="VBoxContainer"]
+text = "v1.0.0"
+horizontal_alignment = 3
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.4, 0.4, 0.4, 1)
+}

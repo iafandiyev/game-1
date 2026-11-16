@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="//uid://dialogue"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue.gd" id="1"]
+
+[node name="Dialogue" type="Control" layout_mode=3]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+color = Color(0, 0, 0, 0.85)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 3
+anchors_preset = 8
+offset_left = 100
+offset_top = 300
+offset_right = -100
+offset_bottom = -50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+
+[node name="SpeakerName" type="Label" parent="VBoxContainer"]
+text = "SPEAKER"
+horizontal_alignment = 0
+theme_overrides = {
+"font_size": 20,
+"font_color": Color(1, 0.8, 0.2, 1)
+}
+
+[node name="DialogueText" type="Label" parent="VBoxContainer"]
+text = "Dialogue text goes here..."
+autowrap_mode = 2
+wrap_width = 800
+theme_overrides = {
+"font_size": 22,
+"font_color": Color(0.9, 0.9, 0.9, 1)
+}
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="VBoxContainer"]
+
+[node name="ContinuePrompt" type="Label" parent="VBoxContainer"]
+text = "▼ Click to continue"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.6, 0.6, 0.6, 1)
+}

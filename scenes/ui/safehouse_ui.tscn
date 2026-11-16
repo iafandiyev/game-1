@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="//uid://safehouseui"]
+
+[ext_resource type="Script" path="res://scripts/ui/safehouse_ui.gd" id="1"]
+
+[node name="SafehouseUI" type="Control" layout_mode=3]
+script = ExtResource("1")
+
+[node name="GeneratorIndicator" type="HBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 5
+offset_left = 20
+offset_top = 20
+
+[node name="GeneratorIcon" type="TextureRect" parent="GeneratorIndicator"]
+custom_minimum_size = Vector2(24, 24)
+
+[node name="GeneratorLabel" type="Label" parent="GeneratorIndicator"]
+text = "GEN: OFF"
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="FuelBar" type="ProgressBar" parent="GeneratorIndicator"]
+min_value = 0
+max_value = 100
+value = 100
+size = Vector2(100, 12)
+
+[node name="UpgradesIndicator" type="VBoxContainer" parent="."]
+layout_mode = 3
+anchors_preset = 6
+offset_right = -20
+offset_top = 20
+
+[node name="UpgradeTitle" type="Label" parent="UpgradesIndicator"]
+text = "UPGRADES"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(1, 0.8, 0.2, 1)
+}
+
+[node name="UpgradeList" type="VBoxContainer" parent="UpgradesIndicator"]

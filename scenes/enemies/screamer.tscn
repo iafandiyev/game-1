@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="//uid://screamer"]
+
+[ext_resource type="Script" path="res://scripts/enemies/screamer.gd" id="1"]
+
+[node name="Screamer" type="CharacterBody2D" layout_mode=3]
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SpriteFrames {
+anims = {
+"idle": {frames = [], loop = true, speed = 5},
+"walk": {frames = [], loop = true, speed = 8},
+"run": {frames = [], loop = true, speed = 10},
+"attack": {frames = [], loop = false, speed = 10},
+"scream": {frames = [], loop = false, speed = 8},
+"death": {frames = [], loop = false, speed = 8},
+"look_around": {frames = [], loop = false, speed = 7}
+}
+}
+animation = "idle"
+frame = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims = {}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = RectangleShape2D {
+x: 30,
+y: 80
+}
+position = Vector2(0, 0)
+
+[node name="DetectionZone" type="Area2D" parent="."]
+monitoring = true
+monitorable = false
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionZone"]
+shape = CircleShape2D {
+radius = 400
+}
+
+[node name="AttackZone" type="Area2D" parent="."]
+position = Vector2(40, 0)
+monitoring = true
+monitorable = false
+
+[node name="AttackShape" type="CollisionShape2D" parent="AttackZone"]
+shape = RectangleShape2D {
+x: 40,
+y: 60
+}
+
+[node name="ScreamZone" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="ScreamShape" type="CollisionShape2D" parent="ScreamZone"]
+shape = CircleShape2D {
+radius = 500
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+position = Vector2(-40, -90)
+size = Vector2(80, 6)
+visible = false
+min_value = 0
+max_value = 60
+value = 60

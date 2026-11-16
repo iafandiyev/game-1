@@ -1,0 +1,183 @@
+[gd_scene load_steps=3 format=3 uid="//uid://inventory"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/inventory/inventory_slot.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/crafting_menu.tscn" id="3"]
+
+[node name="Inventory" type="Control" layout_mode=3]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+color = Color(0.05, 0.05, 0.05, 0.95)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 3
+anchors_preset = 9
+offset_left = 50
+offset_top = 50
+offset_right = -50
+offset_bottom = -50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer"]
+
+[node name="Title" type="Label" parent="Header"]
+text = "INVENTORY"
+theme_overrides = {
+"font_size": 28,
+"font_color": Color(0.9, 0.9, 0.9, 1)
+}
+
+[node name="CapacityLabel" type="Label" parent="Header"]
+text = "0 / 20"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="WeightLabel" type="Label" parent="Header"]
+text = "0.0 / 50.0 kg"
+horizontal_alignment = 2
+theme_overrides = {
+"font_size": 18,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="Tabs" type="TabContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+
+[node name="ItemsTab" type="VBoxContainer" parent="Tabs"]
+title = "Items"
+
+[node name="CategoryTabs" type="TabContainer" parent="ItemsTab"]
+custom_minimum_size = Vector2(0, 40)
+
+[node name="AllTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "All"
+
+[node name="AllGrid" type="GridContainer" parent="AllTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="WeaponsTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Weapons"
+
+[node name="WeaponsGrid" type="GridContainer" parent="WeaponsTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="AmmoTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Ammo"
+
+[node name="AmmoGrid" type="GridContainer" parent="AmmoTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="FoodTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Food & Water"
+
+[node name="FoodGrid" type="GridContainer" parent="FoodTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="MedicineTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Medicine"
+
+[node name="MedicineGrid" type="GridContainer" parent="MedicineTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="MaterialsTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Materials"
+
+[node name="MaterialsGrid" type="GridContainer" parent="MaterialsTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="ToolsTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Tools"
+
+[node name="ToolsGrid" type="GridContainer" parent="ToolsTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="QuestTab" type="VBoxContainer" parent="CategoryTabs"]
+title = "Quest"
+
+[node name="QuestGrid" type="GridContainer" parent="QuestTab"]
+columns = 5
+theme_overrides_constants = {"h_separation": 10, "v_separation": 10}
+
+[node name="CraftingTab" type="VBoxContainer" parent="Tabs"]
+title = "Crafting"
+
+[node name="CraftingMenu" type="Control" parent="CraftingTab" instance=ExtResource("3")]
+
+[node name="ItemDetails" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+visible = false
+
+[node name="DetailsVBox" type="VBoxContainer" parent="ItemDetails"]
+
+[node name="DetailName" type="Label" parent="DetailsVBox"]
+text = "Item Name"
+theme_overrides = {
+"font_size": 22,
+"font_color": Color(1, 1, 1, 1)
+}
+
+[node name="DetailDescription" type="Label" parent="DetailsVBox"]
+text = "Item description goes here..."
+autowrap_mode = 2
+wrap_width = 600
+theme_overrides = {
+"font_size": 16,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="DetailStats" type="HBoxContainer" parent="DetailsVBox"]
+alignment = 0
+
+[node name="DetailWeight" type="Label" parent="DetailStats"]
+text = "Weight: 0.0 kg"
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="DetailValue" type="Label" parent="DetailStats"]
+text = "Value: 0"
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="DetailRarity" type="Label" parent="DetailStats"]
+text = "Rarity: Common"
+theme_overrides = {
+"font_size": 14,
+"font_color": Color(0.7, 0.7, 0.7, 1)
+}
+
+[node name="DetailActions" type="HBoxContainer" parent="DetailsVBox"]
+alignment = 0
+
+[node name="UseButton" type="Button" parent="DetailActions"]
+text = "USE"
+theme_type_variations = ["SmallButton"]
+custom_minimum_size = Vector2(100, 40)
+
+[node name="DropButton" type="Button" parent="DetailActions"]
+text = "DROP"
+theme_type_variations = ["SmallButton"]
+custom_minimum_size = Vector2(100, 40)
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+text = "CLOSE (I)"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(200, 50)
+alignment = 3

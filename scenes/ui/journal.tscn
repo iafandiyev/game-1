@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="//uid://journal"]
+
+[ext_resource type="Script" path="res://scripts/ui/journal.gd" id="1"]
+
+[node name="Journal" type="Control" layout_mode=3]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+color = Color(0.05, 0.05, 0.05, 0.95)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 3
+anchors_preset = 9
+offset_left = 50
+offset_top = 50
+offset_right = -50
+offset_bottom = -50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer"]
+
+[node name="Title" type="Label" parent="Header"]
+text = "JOURNAL"
+theme_overrides = {
+"font_size": 28,
+"font_color": Color(0.9, 0.9, 0.9, 1)
+}
+
+[node name="Tabs" type="TabContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+
+[node name="MissionsTab" type="VBoxContainer" parent="Tabs"]
+title = "Missions"
+
+[node name="MissionsList" type="VBoxContainer" parent="MissionsTab"]
+
+[node name="DocumentsTab" type="VBoxContainer" parent="Tabs"]
+title = "Documents"
+
+[node name="DocumentsList" type="VBoxContainer" parent="DocumentsTab"]
+
+[node name="SurvivorsTab" type="VBoxContainer" parent="Tabs"]
+title = "Survivors"
+
+[node name="SurvivorsList" type="VBoxContainer" parent="SurvivorsTab"]
+
+[node name="LoreTab" type="VBoxContainer" parent="Tabs"]
+title = "Lore"
+
+[node name="LoreList" type="VBoxContainer" parent="LoreTab"]
+
+[node name="EntryDetails" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+visible = false
+
+[node name="DetailsVBox" type="VBoxContainer" parent="EntryDetails"]
+
+[node name="DetailTitle" type="Label" parent="DetailsVBox"]
+text = "Entry Title"
+theme_overrides = {
+"font_size": 22,
+"font_color": Color(1, 1, 1, 1)
+}
+
+[node name="DetailContent" type="Label" parent="DetailsVBox"]
+text = "Entry content goes here..."
+autowrap_mode = 2
+wrap_width = 600
+theme_overrides = {
+"font_size": 16,
+"font_color": Color(0.8, 0.8, 0.8, 1)
+}
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+text = "CLOSE (J)"
+theme_type_variations = ["MenuButton"]
+custom_minimum_size = Vector2(200, 50)
+alignment = 3

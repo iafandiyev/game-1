@@ -1,0 +1,555 @@
+{
+  "missions": [
+    {
+      "id": "m1_welcome_to_hell",
+      "name": "Welcome to Hell",
+      "description": "Survive the initial outbreak and find a safe place.",
+      "type": "main",
+      "chapter": 1,
+      "prerequisites": [],
+      "next_mission": "m2_first_steps",
+      "objectives": [
+        {
+          "id": "obj_escape_apartment",
+          "description": "Escape your apartment building",
+          "type": "reach_location",
+          "target": "apartment_exit",
+          "location": "abandoned_city",
+          "optional": false
+        },
+        {
+          "id": "obj_find_weapon",
+          "description": "Find a weapon",
+          "type": "acquire_item",
+          "target": "baseball_bat",
+          "count": 1,
+          "optional": false
+        },
+        {
+          "id": "obj_reach_safehouse",
+          "description": "Reach the safehouse",
+          "type": "reach_location",
+          "target": "safehouse_entrance",
+          "location": "abandoned_city",
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 100,
+        "items": [
+          { "item_id": "bandage", "count": 3 },
+          { "item_id": "water_bottle", "count": 2 }
+        ]
+      }
+    },
+    {
+      "id": "m2_first_steps",
+      "name": "First Steps",
+      "description": "Learn the basics of survival in the city.",
+      "type": "main",
+      "chapter": 1,
+      "prerequisites": ["m1_welcome_to_hell"],
+      "next_mission": "m3_supply_run",
+      "objectives": [
+        {
+          "id": "obj_learn_crafting",
+          "description": "Craft your first item",
+          "type": "craft_item",
+          "target": "bandage",
+          "count": 1,
+          "optional": false
+        },
+        {
+          "id": "obj_kill_zombies",
+          "description": "Kill 5 zombies",
+          "type": "kill_enemies",
+          "target": "walker",
+          "count": 5,
+          "optional": false
+        },
+        {
+          "id": "obj_find_food",
+          "description": "Find food and water",
+          "type": "acquire_item",
+          "target": "canned_food",
+          "count": 2,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 200,
+        "items": [
+          { "item_id": "pistol", "count": 1 },
+          { "item_id": "pistol_ammo", "count": 2 }
+        ]
+      }
+    },
+    {
+      "id": "m3_supply_run",
+      "name": "Supply Run",
+      "description": "Venture deeper into the city for supplies.",
+      "type": "main",
+      "chapter": 1,
+      "prerequisites": ["m2_first_steps"],
+      "next_mission": "m4_hospital_bound",
+      "objectives": [
+        {
+          "id": "obj_explore_downtown",
+          "description": "Explore downtown area",
+          "type": "reach_location",
+          "target": "downtown_checkpoint",
+          "location": "abandoned_city",
+          "optional": false
+        },
+        {
+          "id": "obj_find_medical_supplies",
+          "description": "Find medical supplies",
+          "type": "acquire_item",
+          "target": "medkit",
+          "count": 1,
+          "optional": true
+        },
+        {
+          "id": "obj_survive_night",
+          "description": "Survive until morning",
+          "type": "survive_time",
+          "duration": 600,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 300,
+        "items": [
+          { "item_id": "shotgun", "count": 1 },
+          { "item_id": "shotgun_ammo", "count": 1 }
+        ]
+      }
+    },
+    {
+      "id": "m4_hospital_bound",
+      "name": "Hospital Bound",
+      "description": "Travel to the hospital to find answers about the virus.",
+      "type": "main",
+      "chapter": 2,
+      "prerequisites": ["m3_supply_run"],
+      "next_mission": "m5_hospital_entry",
+      "objectives": [
+        {
+          "id": "obj_reach_hospital",
+          "description": "Reach the hospital district",
+          "type": "reach_location",
+          "target": "hospital_entrance",
+          "location": "hospital",
+          "optional": false
+        },
+        {
+          "id": "obj_clear_path",
+          "description": "Clear a path through the zombies",
+          "type": "kill_enemies",
+          "target": "runner",
+          "count": 3,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 400,
+        "items": []
+      }
+    },
+    {
+      "id": "m5_hospital_entry",
+      "name": "Hospital Entry",
+      "description": "Enter the hospital and search for medical records.",
+      "type": "main",
+      "chapter": 2,
+      "prerequisites": ["m4_hospital_bound"],
+      "next_mission": "m6_research_data",
+      "objectives": [
+        {
+          "id": "obj_enter_hospital",
+          "description": "Enter the hospital building",
+          "type": "reach_location",
+          "target": "hospital_lobby",
+          "location": "hospital",
+          "optional": false
+        },
+        {
+          "id": "obj_find_records_room",
+          "description": "Locate the medical records room",
+          "type": "reach_location",
+          "target": "records_room",
+          "location": "hospital",
+          "optional": false
+        },
+        {
+          "id": "obj_collect_research_notes_1",
+          "description": "Collect Research Notes: Patient Zero",
+          "type": "acquire_item",
+          "target": "research_notes_1",
+          "count": 1,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 500,
+        "items": [
+          { "item_id": "antibiotics", "count": 3 }
+        ]
+      }
+    },
+    {
+      "id": "m6_research_data",
+      "name": "Research Data",
+      "description": "Find more research data about the virus.",
+      "type": "main",
+      "chapter": 2,
+      "prerequisites": ["m5_hospital_entry"],
+      "next_mission": "m7_supermarket_scout",
+      "objectives": [
+        {
+          "id": "obj_find_lab",
+          "description": "Find the research laboratory",
+          "type": "reach_location",
+          "target": "research_lab",
+          "location": "hospital",
+          "optional": false
+        },
+        {
+          "id": "obj_collect_research_notes_2",
+          "description": "Collect Research Notes: Virus Analysis",
+          "type": "acquire_item",
+          "target": "research_notes_2",
+          "count": 1,
+          "optional": false
+        },
+        {
+          "id": "obj_survive_hospital",
+          "description": "Escape the hospital alive",
+          "type": "reach_location",
+          "target": "hospital_exit",
+          "location": "hospital",
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 600,
+        "items": [
+          { "item_id": "rifle", "count": 1 },
+          { "item_id": "rifle_ammo", "count": 1 }
+        ]
+      }
+    },
+    {
+      "id": "m7_supermarket_scout",
+      "name": "Supermarket Scout",
+      "description": "Scout the supermarket for food and supplies.",
+      "type": "main",
+      "chapter": 3,
+      "prerequisites": ["m6_research_data"],
+      "next_mission": "m8_supermarket_raid",
+      "objectives": [
+        {
+          "id": "obj_reach_supermarket",
+          "description": "Reach the supermarket",
+          "type": "reach_location",
+          "target": "supermarket_entrance",
+          "location": "supermarket",
+          "optional": false
+        },
+        {
+          "id": "obj_find_storage_key",
+          "description": "Find the storage room key",
+          "type": "acquire_item",
+          "target": "storage_key",
+          "count": 1,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 400,
+        "items": []
+      }
+    },
+    {
+      "id": "m8_supermarket_raid",
+      "name": "Supermarket Raid",
+      "description": "Raid the supermarket's locked storage areas.",
+      "type": "main",
+      "chapter": 3,
+      "prerequisites": ["m7_supermarket_scout"],
+      "next_mission": "m9_metro_descent",
+      "objectives": [
+        {
+          "id": "obj_open_storage",
+          "description": "Open the locked storage room",
+          "type": "interact",
+          "target": "storage_room_door",
+          "location": "supermarket",
+          "optional": false
+        },
+        {
+          "id": "obj_collect_food",
+          "description": "Collect 10 food items",
+          "type": "acquire_category",
+          "target": "food",
+          "count": 10,
+          "optional": false
+        },
+        {
+          "id": "obj_find_radio_log",
+          "description": "Find the radio log",
+          "type": "acquire_item",
+          "target": "radio_log_1",
+          "count": 1,
+          "optional": true
+        }
+      ],
+      "rewards": {
+        "experience": 500,
+        "items": [
+          { "item_id": "energy_bar", "count": 10 },
+          { "item_id": "water_bottle", "count": 10 }
+        ]
+      }
+    },
+    {
+      "id": "m9_metro_descent",
+      "name": "Metro Descent",
+      "description": "Enter the metro system to reach the military base.",
+      "type": "main",
+      "chapter": 4,
+      "prerequisites": ["m8_supermarket_raid"],
+      "next_mission": "m10_dark_tunnels",
+      "objectives": [
+        {
+          "id": "obj_enter_metro",
+          "description": "Enter the metro station",
+          "type": "reach_location",
+          "target": "metro_entrance",
+          "location": "metro",
+          "optional": false
+        },
+        {
+          "id": "obj_find_flashlight",
+          "description": "Find a working flashlight",
+          "type": "acquire_item",
+          "target": "flashlight",
+          "count": 1,
+          "optional": false
+        },
+        {
+          "id": "obj_kill_crawlers",
+          "description": "Kill 5 crawlers",
+          "type": "kill_enemies",
+          "target": "crawler",
+          "count": 5,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 600,
+        "items": [
+          { "item_id": "battery", "count": 10 }
+        ]
+      }
+    },
+    {
+      "id": "m10_dark_tunnels",
+      "name": "Dark Tunnels",
+      "description": "Navigate the dark metro tunnels.",
+      "type": "main",
+      "chapter": 4,
+      "prerequisites": ["m9_metro_descent"],
+      "next_mission": "m11_metro_exit",
+      "objectives": [
+        {
+          "id": "obj_traverse_tunnels",
+          "description": "Traverse the metro tunnels",
+          "type": "reach_location",
+          "target": "metro_platform",
+          "location": "metro",
+          "optional": false
+        },
+        {
+          "id": "obj_avoid_screamers",
+          "description": "Avoid or eliminate 3 screamers",
+          "type": "kill_enemies",
+          "target": "screamer",
+          "count": 3,
+          "optional": false
+        },
+        {
+          "id": "obj_find_survivor_note",
+          "description": "Find the survivor's journal",
+          "type": "acquire_item",
+          "target": "survivor_note_1",
+          "count": 1,
+          "optional": true
+        }
+      ],
+      "rewards": {
+        "experience": 700,
+        "items": []
+      }
+    },
+    {
+      "id": "m11_metro_exit",
+      "name": "Metro Exit",
+      "description": "Exit the metro near the military base.",
+      "type": "main",
+      "chapter": 4,
+      "prerequisites": ["m10_dark_tunnels"],
+      "next_mission": "m12_military_base_approach",
+      "objectives": [
+        {
+          "id": "obj_exit_metro",
+          "description": "Exit the metro system",
+          "type": "reach_location",
+          "target": "metro_exit",
+          "location": "metro",
+          "optional": false
+        },
+        {
+          "id": "obj_reach_military_base",
+          "description": "Reach the military base perimeter",
+          "type": "reach_location",
+          "target": "base_perimeter",
+          "location": "military_base",
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 500,
+        "items": []
+      }
+    },
+    {
+      "id": "m12_military_base_approach",
+      "name": "Military Base Approach",
+      "description": "Approach the heavily guarded military base.",
+      "type": "main",
+      "chapter": 5,
+      "prerequisites": ["m11_metro_exit"],
+      "next_mission": "m13_base_infiltration",
+      "objectives": [
+        {
+          "id": "obj_bypass_perimeter",
+          "description": "Bypass the outer perimeter",
+          "type": "reach_location",
+          "target": "base_outer_wall",
+          "location": "military_base",
+          "optional": false
+        },
+        {
+          "id": "obj_eliminate_tanks",
+          "description": "Eliminate 2 tank zombies",
+          "type": "kill_enemies",
+          "target": "tank",
+          "count": 2,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 800,
+        "items": []
+      }
+    },
+    {
+      "id": "m13_base_infiltration",
+      "name": "Base Infiltration",
+      "description": "Infiltrate the military base and find the command center.",
+      "type": "main",
+      "chapter": 5,
+      "prerequisites": ["m12_military_base_approach"],
+      "next_mission": "m14_command_center",
+      "objectives": [
+        {
+          "id": "obj_enter_base",
+          "description": "Enter the military base",
+          "type": "reach_location",
+          "target": "base_entrance",
+          "location": "military_base",
+          "optional": false
+        },
+        {
+          "id": "obj_find_command_center",
+          "description": "Locate the command center",
+          "type": "reach_location",
+          "target": "command_center",
+          "location": "military_base",
+          "optional": false
+        },
+        {
+          "id": "obj_collect_intel",
+          "description": "Collect military intelligence",
+          "type": "acquire_item",
+          "target": "military_intel",
+          "count": 1,
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 1000,
+        "items": [
+          { "item_id": "advanced_barricade", "count": 1 }
+        ]
+      }
+    },
+    {
+      "id": "m14_command_center",
+      "name": "Command Center",
+      "description": "Access the command center and learn the truth.",
+      "type": "main",
+      "chapter": 5,
+      "prerequisites": ["m13_base_infiltration"],
+      "next_mission": "m15_final_choice",
+      "objectives": [
+        {
+          "id": "obj_access_terminal",
+          "description": "Access the command terminal",
+          "type": "interact",
+          "target": "command_terminal",
+          "location": "military_base",
+          "optional": false
+        },
+        {
+          "id": "obj_learn_truth",
+          "description": "Learn the truth about the virus",
+          "type": "dialogue",
+          "target": "ending_reveal",
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 1500,
+        "items": []
+      }
+    },
+    {
+      "id": "m15_final_choice",
+      "name": "The Final Choice",
+      "description": "Make the choice that determines the fate of the city.",
+      "type": "main",
+      "chapter": 5,
+      "prerequisites": ["m14_command_center"],
+      "next_mission": "",
+      "objectives": [
+        {
+          "id": "obj_make_choice",
+          "description": "Make your final choice",
+          "type": "choice",
+          "target": "ending_choice",
+          "options": [
+            { "id": "ending_a", "text": "Escape the city", "description": "Take the helicopter and escape" },
+            { "id": "ending_b", "text": "Sacrifice yourself", "description": "Destroy the virus source but remain behind" }
+          ],
+          "optional": false
+        }
+      ],
+      "rewards": {
+        "experience": 2000,
+        "items": []
+      }
+    }
+  ]
+}

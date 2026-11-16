@@ -1,0 +1,63 @@
+# Godot 4 specific ignores
+.godot/
+.projectile
+export_presets.cfg
+export_presets.cfg.bak
+
+# Imported assets (these are generated)
+.import/
+
+# Build outputs
+build/
+bin/
+*.apk
+*.ipa
+*.app
+*.exe
+*.pck
+
+# Xcode project (generated for iOS export)
+*.xcodeproj/
+*.xcworkspace/
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Cache
+.cache/
+node_modules/
+
+# Local configuration
+local_*.cfg
+user_*.cfg
+
+# Godot 4 project specific
+*.pid
+*.import
+
+# Export templates (downloaded)
+templates/

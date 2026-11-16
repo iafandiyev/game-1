@@ -1,0 +1,137 @@
+{
+  "id": "abandoned_city",
+  "name": "Abandoned City",
+  "description": "The ruined streets where the outbreak began.",
+  "chapter": 1,
+  "difficulty": 1,
+  "unlocked": true,
+  "background_layers": [
+    {
+      "path": "res://assets/environments/city/bg_far.png",
+      "scroll_speed": 0.1,
+      "scale": 1.0
+    },
+    {
+      "path": "res://assets/environments/city/bg_mid.png",
+      "scroll_speed": 0.3,
+      "scale": 1.0
+    },
+    {
+      "path": "res://assets/environments/city/bg_near.png",
+      "scroll_speed": 0.6,
+      "scale": 1.0
+    }
+  ],
+  "spawn_point": { "x": 100, "y": 500 },
+  "checkpoints": [
+    {
+      "id": "cp_apartment",
+      "name": "Apartment Building",
+      "position": { "x": 100, "y": 500 },
+      "unlocked": true
+    },
+    {
+      "id": "cp_downtown",
+      "name": "Downtown Checkpoint",
+      "position": { "x": 2500, "y": 400 },
+      "unlocked": false
+    },
+    {
+      "id": "cp_safehouse",
+      "name": "Safehouse",
+      "position": { "x": 5000, "y": 300 },
+      "unlocked": false
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_hospital",
+      "target_level": "hospital",
+      "target_spawn": "hospital_entrance",
+      "position": { "x": 8000, "y": 400 },
+      "required_mission": "m3_supply_run"
+    },
+    {
+      "id": "exit_supermarket",
+      "target_level": "supermarket",
+      "target_spawn": "supermarket_entrance",
+      "position": { "x": -500, "y": 400 },
+      "required_mission": "m6_research_data"
+    },
+    {
+      "id": "exit_safehouse",
+      "target_level": "safehouse",
+      "target_spawn": "safehouse_entrance",
+      "position": { "x": 5000, "y": 300 },
+      "required_mission": "m2_first_steps"
+    }
+  ],
+  "zombie_spawns": [
+    { "type": "walker", "position": { "x": 500, "y": 500 }, "patrol_radius": 100 },
+    { "type": "walker", "position": { "x": 800, "y": 500 }, "patrol_radius": 150 },
+    { "type": "walker", "position": { "x": 1200, "y": 450 }, "patrol_radius": 100 },
+    { "type": "walker", "position": { "x": 1800, "y": 400 }, "patrol_radius": 200 },
+    { "type": "runner", "position": { "x": 2200, "y": 400 }, "patrol_radius": 300 },
+    { "type": "walker", "position": { "x": 3000, "y": 400 }, "patrol_radius": 150 },
+    { "type": "walker", "position": { "x": 3500, "y": 350 }, "patrol_radius": 100 },
+    { "type": "runner", "position": { "x": 4000, "y": 350 }, "patrol_radius": 200 },
+    { "type": "walker", "position": { "x": 4500, "y": 300 }, "patrol_radius": 100 },
+    { "type": "screamer", "position": { "x": 5500, "y": 300 }, "patrol_radius": 150 },
+    { "type": "walker", "position": { "x": 6000, "y": 350 }, "patrol_radius": 100 },
+    { "type": "walker", "position": { "x": 6500, "y": 400 }, "patrol_radius": 150 },
+    { "type": "walker", "position": { "x": 7000, "y": 400 }, "patrol_radius": 100 }
+  ],
+  "loot_containers": [
+    {
+      "id": "loot_apartment_1",
+      "position": { "x": 200, "y": 480 },
+      "type": "container",
+      "loot_table": "apartment_loot",
+      "respawn_time": 3600
+    },
+    {
+      "id": "loot_car_1",
+      "position": { "x": 1000, "y": 500 },
+      "type": "vehicle",
+      "loot_table": "vehicle_loot",
+      "respawn_time": 1800
+    },
+    {
+      "id": "loot_store_1",
+      "position": { "x": 2800, "y": 380 },
+      "type": "container",
+      "loot_table": "store_loot",
+      "respawn_time": 3600
+    },
+    {
+      "id": "loot_alley_1",
+      "position": { "x": 3800, "y": 330 },
+      "type": "ground",
+      "loot_table": "alley_loot",
+      "respawn_time": 7200
+    }
+  ],
+  "interactive_objects": [
+    {
+      "id": "door_apartment",
+      "type": "door",
+      "position": { "x": 100, "y": 500 },
+      "locked": false,
+      "leads_to": "apartment_interior"
+    },
+    {
+      "id": "generator_1",
+      "type": "generator",
+      "position": { "x": 5200, "y": 280 },
+      "fuel_required": 20,
+      "activates": "safehouse_lights"
+    }
+  ],
+  "ambient_sounds": [
+    "wind_city",
+    "distant_screams",
+    "creaking_buildings"
+  ],
+  "music": "city_day",
+  "night_music": "city_night"
+}

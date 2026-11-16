@@ -1,0 +1,353 @@
+{
+  "weapons": [
+    {
+      "id": "pistol",
+      "name": "9mm Pistol",
+      "description": "A reliable semi-automatic pistol. Standard issue for law enforcement.",
+      "category": "ranged",
+      "weapon_type": "pistol",
+      "icon": "res://assets/ui/icons/weapon_pistol.png",
+      "model": "res://assets/weapons/pistol.tscn",
+      
+      "damage": 25,
+      "fire_rate": 0.3,
+      "reload_time": 2.0,
+      "magazine_size": 15,
+      "max_ammo": 60,
+      "ammo_type": "9mm",
+      "current_ammo": 15,
+      "reserve_ammo": 45,
+      
+      "accuracy": 0.85,
+      "recoil": 2.0,
+      "recoil_recovery": 8.0,
+      "spread": 0.02,
+      "spread_increase": 0.01,
+      "max_spread": 0.15,
+      
+      "range": 300,
+      "sound_radius": 15.0,
+      "muzzle_flash": "res://assets/effects/muzzle_flash_pistol.tscn",
+      "shell_casing": "res://assets/effects/shell_casing_9mm.tscn",
+      
+      "animations": {
+        "idle": "res://assets/animations/pistol_idle.tres",
+        "fire": "res://assets/animations/pistol_fire.tres",
+        "reload": "res://assets/animations/pistol_reload.tres",
+        "equip": "res://assets/animations/pistol_equip.tres",
+        "aim": "res://assets/animations/pistol_aim.tres"
+      },
+      
+      "weight": 1.0,
+      "value": 200,
+      "rarity": "common",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "extended_mag",
+          "name": "Extended Magazine",
+          "description": "Increases magazine capacity to 20 rounds.",
+          "cost": 100,
+          "effect": { "magazine_size": 20 }
+        },
+        {
+          "id": "laser_sight",
+          "name": "Laser Sight",
+          "description": "Improves hip-fire accuracy.",
+          "cost": 150,
+          "effect": { "accuracy": 0.95, "spread": 0.01 }
+        },
+        {
+          "id": "suppressor",
+          "name": "Suppressor",
+          "description": "Reduces sound radius by 75%.",
+          "cost": 300,
+          "effect": { "sound_radius": 3.75 }
+        }
+      ]
+    },
+    {
+      "id": "shotgun",
+      "name": "12 Gauge Shotgun",
+      "description": "A pump-action shotgun devastating at close range.",
+      "category": "ranged",
+      "weapon_type": "shotgun",
+      "icon": "res://assets/ui/icons/weapon_shotgun.png",
+      "model": "res://assets/weapons/shotgun.tscn",
+      
+      "damage": 15,
+      "pellets": 8,
+      "fire_rate": 1.0,
+      "reload_time": 3.0,
+      "magazine_size": 8,
+      "max_ammo": 32,
+      "ammo_type": "12gauge",
+      "current_ammo": 8,
+      "reserve_ammo": 24,
+      
+      "accuracy": 0.6,
+      "recoil": 8.0,
+      "recoil_recovery": 4.0,
+      "spread": 0.1,
+      "spread_increase": 0.05,
+      "max_spread": 0.3,
+      
+      "range": 100,
+      "sound_radius": 25.0,
+      "muzzle_flash": "res://assets/effects/muzzle_flash_shotgun.tscn",
+      "shell_casing": "res://assets/effects/shell_casing_12g.tscn",
+      
+      "animations": {
+        "idle": "res://assets/animations/shotgun_idle.tres",
+        "fire": "res://assets/animations/shotgun_fire.tres",
+        "reload": "res://assets/animations/shotgun_reload.tres",
+        "equip": "res://assets/animations/shotgun_equip.tres",
+        "aim": "res://assets/animations/shotgun_aim.tres"
+      },
+      
+      "weight": 3.5,
+      "value": 400,
+      "rarity": "uncommon",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "choke",
+          "name": "Improved Choke",
+          "description": "Reduces spread by 30%.",
+          "cost": 150,
+          "effect": { "spread": 0.07 }
+        },
+        {
+          "id": "sling",
+          "name": "Tactical Sling",
+          "description": "Reduces reload time by 20%.",
+          "cost": 100,
+          "effect": { "reload_time": 2.4 }
+        },
+        {
+          "id": "ghost_ring_sights",
+          "name": "Ghost Ring Sights",
+          "description": "Improves accuracy when aiming.",
+          "cost": 200,
+          "effect": { "accuracy": 0.75 }
+        }
+      ]
+    },
+    {
+      "id": "rifle",
+      "name": "Assault Rifle",
+      "description": "A selective-fire assault rifle. Effective at medium to long range.",
+      "category": "ranged",
+      "weapon_type": "rifle",
+      "icon": "res://assets/ui/icons/weapon_rifle.png",
+      "model": "res://assets/weapons/rifle.tscn",
+      
+      "damage": 35,
+      "fire_rate": 0.1,
+      "reload_time": 2.5,
+      "magazine_size": 30,
+      "max_ammo": 90,
+      "ammo_type": "556",
+      "current_ammo": 30,
+      "reserve_ammo": 60,
+      
+      "accuracy": 0.9,
+      "recoil": 3.0,
+      "recoil_recovery": 6.0,
+      "spread": 0.015,
+      "spread_increase": 0.008,
+      "max_spread": 0.1,
+      
+      "range": 500,
+      "sound_radius": 30.0,
+      "muzzle_flash": "res://assets/effects/muzzle_flash_rifle.tscn",
+      "shell_casing": "res://assets/effects/shell_casing_556.tscn",
+      
+      "animations": {
+        "idle": "res://assets/animations/rifle_idle.tres",
+        "fire": "res://assets/animations/rifle_fire.tres",
+        "reload": "res://assets/animations/rifle_reload.tres",
+        "equip": "res://assets/animations/rifle_equip.tres",
+        "aim": "res://assets/animations/rifle_aim.tres"
+      },
+      
+      "weight": 4.0,
+      "value": 800,
+      "rarity": "rare",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "optic",
+          "name": "Red Dot Optic",
+          "description": "Greatly improves aimed accuracy.",
+          "cost": 400,
+          "effect": { "accuracy": 0.98, "spread": 0.005 }
+        },
+        {
+          "id": "foregrip",
+          "name": "Vertical Foregrip",
+          "description": "Reduces recoil by 40%.",
+          "cost": 200,
+          "effect": { "recoil": 1.8 }
+        },
+        {
+          "id": "extended_mag_rifle",
+          "name": "Extended Magazine",
+          "description": "Increases magazine capacity to 40 rounds.",
+          "cost": 250,
+          "effect": { "magazine_size": 40 }
+        }
+      ]
+    },
+    {
+      "id": "baseball_bat",
+      "name": "Baseball Bat",
+      "description": "A sturdy wooden baseball bat. Silent but requires stamina.",
+      "category": "melee",
+      "weapon_type": "blunt",
+      "icon": "res://assets/ui/icons/weapon_bat.png",
+      "model": "res://assets/weapons/baseball_bat.tscn",
+      
+      "damage": 40,
+      "attack_speed": 1.2,
+      "stamina_cost": 15,
+      "knockback": 5.0,
+      "reach": 80,
+      
+      "accuracy": 1.0,
+      "recoil": 0.0,
+      
+      "range": 80,
+      "sound_radius": 2.0,
+      
+      "animations": {
+        "idle": "res://assets/animations/bat_idle.tres",
+        "attack": "res://assets/animations/bat_attack.tres",
+        "heavy_attack": "res://assets/animations/bat_heavy.tres",
+        "equip": "res://assets/animations/bat_equip.tres"
+      },
+      
+      "weight": 1.5,
+      "value": 50,
+      "rarity": "common",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "nails",
+          "name": "Nail Bat",
+          "description": "Adds nails for bleeding damage.",
+          "cost": 50,
+          "effect": { "damage": 50, "bleed_chance": 0.3 }
+        },
+        {
+          "id": "tape_grip",
+          "name": "Taped Grip",
+          "description": "Reduces stamina cost by 20%.",
+          "cost": 30,
+          "effect": { "stamina_cost": 12 }
+        }
+      ]
+    },
+    {
+      "id": "knife",
+      "name": "Combat Knife",
+      "description": "A sharp military knife. Fast attacks with bleed chance.",
+      "category": "melee",
+      "weapon_type": "blade",
+      "icon": "res://assets/ui/icons/weapon_knife.png",
+      "model": "res://assets/weapons/knife.tscn",
+      
+      "damage": 30,
+      "attack_speed": 0.6,
+      "stamina_cost": 8,
+      "knockback": 2.0,
+      "reach": 60,
+      "bleed_chance": 0.25,
+      "bleed_damage": 5,
+      "bleed_duration": 5.0,
+      
+      "accuracy": 1.0,
+      "recoil": 0.0,
+      
+      "range": 60,
+      "sound_radius": 1.0,
+      
+      "animations": {
+        "idle": "res://assets/animations/knife_idle.tres",
+        "attack": "res://assets/animations/knife_attack.tres",
+        "heavy_attack": "res://assets/animations/knife_heavy.tres",
+        "equip": "res://assets/animations/knife_equip.tres"
+      },
+      
+      "weight": 0.5,
+      "value": 80,
+      "rarity": "common",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "serrated",
+          "name": "Serrated Edge",
+          "description": "Increases bleed chance and damage.",
+          "cost": 100,
+          "effect": { "bleed_chance": 0.5, "bleed_damage": 8 }
+        }
+      ]
+    },
+    {
+      "id": "fire_axe",
+      "name": "Fire Axe",
+      "description": "Heavy fire axe. High damage and can break down doors.",
+      "category": "melee",
+      "weapon_type": "axe",
+      "icon": "res://assets/ui/icons/weapon_axe.png",
+      "model": "res://assets/weapons/fire_axe.tscn",
+      
+      "damage": 60,
+      "attack_speed": 1.8,
+      "stamina_cost": 25,
+      "knockback": 8.0,
+      "reach": 90,
+      "armor_pierce": 0.3,
+      "can_break_doors": true,
+      
+      "accuracy": 1.0,
+      "recoil": 0.0,
+      
+      "range": 90,
+      "sound_radius": 3.0,
+      
+      "animations": {
+        "idle": "res://assets/animations/axe_idle.tres",
+        "attack": "res://assets/animations/axe_attack.tres",
+        "heavy_attack": "res://assets/animations/axe_heavy.tres",
+        "equip": "res://assets/animations/axe_equip.tres"
+      },
+      
+      "weight": 3.0,
+      "value": 150,
+      "rarity": "uncommon",
+      "durability": 100,
+      "max_durability": 100,
+      
+      "upgrades": [
+        {
+          "id": "sharpened",
+          "name": "Razor Sharp",
+          "description": "Increases damage by 20%.",
+          "cost": 150,
+          "effect": { "damage": 72 }
+        }
+      ]
+    }
+  ]
+}
